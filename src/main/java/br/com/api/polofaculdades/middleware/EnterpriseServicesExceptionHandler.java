@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class EnterpriseServicesExceptionHandler {
 
     @ExceptionHandler(InvalidEnterpriseDataException.class)
-    public ResponseEntity<String> invalidEnterpriseDataExceptionHandler() {
-        return ResponseEntity.badRequest().body(new InvalidEnterpriseDataException().getMessage());
+    public ResponseEntity<String> invalidEnterpriseDataExceptionHandler(InvalidEnterpriseDataException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     @ExceptionHandler(EnterpriseNotFoundException.class)
-    public ResponseEntity<String> enterpriseNotFoundExceptionHandler() {
-        return ResponseEntity.badRequest().body(new EnterpriseNotFoundException().getMessage());
+    public ResponseEntity<String> enterpriseNotFoundExceptionHandler(EnterpriseNotFoundException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
 }
