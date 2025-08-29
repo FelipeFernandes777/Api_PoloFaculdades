@@ -4,4 +4,8 @@ public class InvalidEnterpriseDataException extends RuntimeException {
     public InvalidEnterpriseDataException(String message) {
         super(message);
     }
+
+    public InvalidEnterpriseDataException() {
+        super("Valor informado é invalido");
+    }
 }
