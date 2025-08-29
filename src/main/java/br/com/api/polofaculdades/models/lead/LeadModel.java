@@ -1,5 +1,6 @@
 package br.com.api.polofaculdades.models.lead;
 
+import br.com.api.polofaculdades.models.enterprise.EnterpriseModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,10 @@ public class LeadModel {
 
     @Column(name = "telefone", nullable = false, length = 11)
     private String phone;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", nullable = false)
+    private EnterpriseModel enterprise;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

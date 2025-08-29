@@ -3,6 +3,8 @@ package br.com.api.polofaculdades.models.enterprise;
 import br.com.api.polofaculdades.models.enterprise.dto.CreateEnterpriseDTO;
 import br.com.api.polofaculdades.models.enterprise.dto.UpdateEnterpriseDataDTO;
 import br.com.api.polofaculdades.models.enterprise.dto.UpdatedEnterpriseDTO;
+import br.com.api.polofaculdades.models.lead.LeadModel;
+import br.com.api.polofaculdades.models.lead.dto.LeadDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -12,6 +14,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "empresas")
 @Entity(name = "empresa")
@@ -29,6 +32,9 @@ public class EnterpriseModel {
 
     @Column(name = "ativa", nullable = false)
     private Boolean active;
+
+    @OneToMany(mappedBy = "enterprise")
+    private List<LeadModel> leads;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
