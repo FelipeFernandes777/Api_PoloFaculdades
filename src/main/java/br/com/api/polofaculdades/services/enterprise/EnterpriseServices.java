@@ -3,10 +3,7 @@ package br.com.api.polofaculdades.services.enterprise;
 import br.com.api.polofaculdades.exception.enterprise.EnterpriseNotFoundException;
 import br.com.api.polofaculdades.exception.enterprise.InvalidEnterpriseDataException;
 import br.com.api.polofaculdades.models.enterprise.EnterpriseModel;
-import br.com.api.polofaculdades.models.enterprise.dto.CreateEnterpriseDTO;
-import br.com.api.polofaculdades.models.enterprise.dto.EnterpriseDTO;
-import br.com.api.polofaculdades.models.enterprise.dto.UpdateEnterpriseDataDTO;
-import br.com.api.polofaculdades.models.enterprise.dto.UpdatedEnterpriseDTO;
+import br.com.api.polofaculdades.models.enterprise.dto.*;
 import br.com.api.polofaculdades.repositories.EnterpriseRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +44,7 @@ public class EnterpriseServices implements IEnterpriseServices {
     }
 
     @Override
-    public Optional<EnterpriseDTO> listEnterpriseById(String id) {
+    public Optional<EnterpriseByIdDTO> listEnterpriseById(String id) {
         if (id == null || id.isEmpty()) {
             throw new InvalidEnterpriseDataException("Favor informar o ID");
         }
@@ -55,7 +52,7 @@ public class EnterpriseServices implements IEnterpriseServices {
         var enterprise = this.repository.findById(id)
                 .orElseThrow(() -> new EnterpriseNotFoundException("Nenhuma empresa encontrada com esse ID"));
 
-        return Optional.of(new EnterpriseDTO(enterprise));
+        return Optional.of(new EnterpriseByIdDTO(enterprise));
     }
 
     @Transactional
