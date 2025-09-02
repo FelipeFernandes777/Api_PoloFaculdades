@@ -1,6 +1,7 @@
 package br.com.api.polofaculdades.models.lead;
 
 import br.com.api.polofaculdades.models.enterprise.EnterpriseModel;
+import br.com.api.polofaculdades.models.lead.dto.CreateLeadDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -34,4 +35,10 @@ public class LeadModel {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    public LeadModel(CreateLeadDTO data, EnterpriseModel enterprise) {
+        this.name = data.name();
+        this.phone = data.phone();
+        this.enterprise = enterprise;
+    }
 }
