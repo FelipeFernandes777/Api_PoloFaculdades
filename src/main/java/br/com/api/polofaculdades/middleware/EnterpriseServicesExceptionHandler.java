@@ -19,4 +19,9 @@ public class EnterpriseServicesExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGenericException(Exception ex) {
+        return ResponseEntity.status(500).body("Erro interno: " + ex.getMessage());
+    }
+
 }
